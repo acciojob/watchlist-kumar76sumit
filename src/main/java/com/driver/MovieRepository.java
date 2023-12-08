@@ -54,19 +54,20 @@ public class MovieRepository {
         Director director=directorList.get(directorName);
         return new ResponseEntity<>(director, HttpStatus.CREATED);
     }
-    public ResponseEntity<List<Movie>> getMoviesByDirectorName(@PathVariable("directorName") String directorName)
+    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable("directorName") String directorName)
     {
         Director director=directorList.get(directorName);
-        List<Movie> movies=directorMovieMap.get(director);
+        List<String> movies=new ArrayList<>();
+        for(Movie movie:directorMovieMap.get(director))
+        {
+            movies.add(movie.getName());
+        }
         return new ResponseEntity<>(movies, HttpStatus.CREATED);
     }
-    public ResponseEntity<List<Movie>> findAllMovies()
+    public ResponseEntity<List<String>> findAllMovies()
     {
-        List<Movie> movies=new ArrayList<>();
-        for(String movieName:movieList.keySet())
-        {
-            movies.add(movieList.get(movieName));
-        }
+        List<String> movies=new ArrayList<>();
+        movies.addAll(movieList.keySet());
         return new ResponseEntity<>(movies, HttpStatus.CREATED);
     }
     public ResponseEntity<String> deleteDirectorByName(@RequestParam("directorName") String directorName)

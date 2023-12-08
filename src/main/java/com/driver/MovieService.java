@@ -31,11 +31,11 @@ public class MovieService {
     {
         return movieRepository.getDirectorByName(directorName);
     }
-    public ResponseEntity<List<Movie>> getMoviesByDirectorName(@PathVariable("directorName") String directorName)
+    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable("directorName") String directorName)
     {
         return movieRepository.getMoviesByDirectorName(directorName);
     }
-    public ResponseEntity<List<Movie>> findAllMovies()
+    public ResponseEntity<List<String>> findAllMovies()
     {
         return movieRepository.findAllMovies();
     }
